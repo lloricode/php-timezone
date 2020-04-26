@@ -7,21 +7,10 @@ use DateTimeZone;
 
 class Timezone
 {
-    public static function generateList(): array
+    public static function generateList(array $regions = [DateTimeZone::ALL]): array
     {
-        static $regions = [
-            DateTimeZone::AFRICA,
-            DateTimeZone::AMERICA,
-            DateTimeZone::ANTARCTICA,
-            DateTimeZone::ASIA,
-            DateTimeZone::ATLANTIC,
-            DateTimeZone::AUSTRALIA,
-            DateTimeZone::EUROPE,
-            DateTimeZone::INDIAN,
-            DateTimeZone::PACIFIC,
-        ];
-
         $timezones = [];
+
         foreach ($regions as $region) {
             $timezones = array_merge($timezones, timezone_identifiers_list($region));
         }
