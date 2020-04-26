@@ -15,7 +15,6 @@ class Timezone
             $timezones = array_merge($timezones, timezone_identifiers_list($region));
         }
 
-
         $timezoneOffsets = [];
         foreach ($timezones as $timezone) {
             $timezoneOffsets[$timezone] = (new DateTimeZone($timezone))
