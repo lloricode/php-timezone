@@ -22,8 +22,8 @@ jobs:
       with:
         php-version: ${{ matrix.php }}
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+    - name: Check PHP and composer version
+      run: php -v && composer --version
 
     - name: Install dependencies
       run: composer u --${{ matrix.dependency-version }} --prefer-dist --no-progress --no-suggest
