@@ -21,10 +21,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         php-version: ${{ matrix.php }}
-    
-    - name: Composer Self Update
-      run : composer self-update
-      
+
     - name: Check PHP and composer version
       run: php -v && composer --version
 
