@@ -8,3 +8,9 @@ Generate Timezone from PHP.
 composer require lloricode/php-timezone
 
 ```
+
+## Usage
+```
+ see testing for sample
+
+```
