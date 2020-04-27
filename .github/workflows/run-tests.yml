@@ -16,8 +16,12 @@ jobs:
       matrix:
         php: [7.2, 7.3, 7.4]
         dependency-version: [prefer-lowest, prefer-stable]
+        
+    name: P${{ matrix.php }} - ${{ matrix.dependency-version }}
 
     steps:
+    - uses: actions/checkout@v2
+      
     - uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php }}
