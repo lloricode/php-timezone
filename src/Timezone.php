@@ -4,15 +4,26 @@ namespace Lloricode\Timezone;
 
 use DateTime;
 use DateTimeZone;
+use InvalidArgumentException;
 
 class Timezone
 {
-    public static function generateList(array $regions = [DateTimeZone::ALL]): array
+    public static function generateList(array $regions = ['ALL']): array
     {
+        if (empty($regions)) {
+            throw new InvalidArgumentException('Empty array argument not allowed.');
+        }
+
         $timezones = [];
 
         foreach ($regions as $region) {
-            $timezones = array_merge($timezones, timezone_identifiers_list($region));
+            $arg = "DateTimeZone::$region";
+
+            if (!defined($arg)) {
+                throw new InvalidArgumentException("DateTimeZone::$region not found.");
+            }
+
+            $timezones = array_merge($timezones, DateTimeZone::listIdentifiers(constant($arg)));
         }
 
         $timezoneOffsets = [];
