@@ -11,14 +11,26 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [7.2, 7.3, 7.4]
+        dependency-version: [prefer-lowest, prefer-stable]
+        
+    name: P${{ matrix.php }} - ${{ matrix.dependency-version }}
+
     steps:
     - uses: actions/checkout@v2
+      
+    - uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+    - name: Check PHP and composer version
+      run: php -v && composer --version
 
     - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer u --${{ matrix.dependency-version }} --prefer-dist --no-progress --no-suggest
 
     - name: Run test suite
       run: vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
