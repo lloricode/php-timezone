@@ -29,7 +29,7 @@ class Timezone
         $timezoneOffsets = [];
         foreach ($timezones as $timezone) {
             $timezoneOffsets[$timezone] = (new DateTimeZone($timezone))
-                ->getOffset(new DateTime);
+                ->getOffset(new DateTime());
         }
 
         // sort timezone by offset
@@ -48,7 +48,7 @@ class Timezone
         return $timezoneList;
     }
 
-    public static function getOffset(string $timezone):string
+    public static function getOffset(string $timezone): string
     {
         return self::generateList()[$timezone];
     }
