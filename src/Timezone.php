@@ -47,4 +47,9 @@ class Timezone
 
         return $timezoneList;
     }
+
+    public static function getOffset(string $timezone):string
+    {
+        return self::generateList()[$timezone];
+    }
 }
