@@ -19,4 +19,4 @@ jobs:
         uses: aglipanci/laravel-pint-action@2.3.1
         with:
           testMode: true
-          useComposer: true
+          useComposer: false
