@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lloricode\Timezone;
 
 use DateTime;
@@ -19,7 +21,7 @@ class Timezone
         foreach ($regions as $region) {
             $arg = "DateTimeZone::$region";
 
-            if (!defined($arg)) {
+            if (! defined($arg)) {
                 throw new InvalidArgumentException("DateTimeZone::$region not found.");
             }
 
@@ -40,9 +42,9 @@ class Timezone
             $offsetPrefix = $offset < 0 ? '-' : '+';
             $offsetFormatted = gmdate('H:i', abs($offset));
 
-            $prettyOffset = "UTC${offsetPrefix}${offsetFormatted}";
+            $prettyOffset = "UTC{$offsetPrefix}{$offsetFormatted}";
 
-            $timezoneList[$timezone] = "(${prettyOffset}) $timezone";
+            $timezoneList[$timezone] = "({$prettyOffset}) $timezone";
         }
 
         return $timezoneList;
