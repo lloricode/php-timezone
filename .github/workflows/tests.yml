@@ -35,14 +35,14 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
-          #          coverage: pcov
-          coverage: none
+          coverage: pcov
+#          coverage: none
 
       - name: Install Composer dependencies
         run: composer i --prefer-dist --no-interaction --no-progress
 
       - name: Execute tests
-        run: vendor/bin/pest --ci --parallel #--coverage-clover coverage.xml
+        run: XDEBUG_MODE=coverage vendor/bin/pest --coverage --parallel
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
