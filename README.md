@@ -27,7 +27,7 @@ $timezones = Lloricode\Timezone\Timezone::generateList();
 ```
 
 ### Result
-```
+```php
 [
     "Pacific/Midway" => "(UTC-11:00) Pacific/Midway",
     "Pacific/Niue" => "(UTC-11:00) Pacific/Niue",
